@@ -40,5 +40,58 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    func updateView(){
+        
+    }
+    func loadData(){
+        print("robi cokolwiekddddddd")
+        let url = URL(string: "https://www.metaweather.com/api/location/523920/")
+        if let url = URL(string: "https://www.metaweather.com/api/location/523920/") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data {
+                    let jsonDecoder = JSONDecoder()
+                    do {
+                        let parsedJSON = try jsonDecoder.decode(Entry.self, from: data)
+                        for day in parsedJSON.days {
+                            print(day.value.id)
+                            print(day.value.humidity)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.updateView()
+                }
+                }.resume()
+        }
+        print("robi cokolwiek")
+    }
+
+    
+}
+
+
+
+struct Day: Codable{
+    let id: Int
+    let weather_state_name: String
+    let weather_state_abbr: String
+    let wind_direction_compass: String
+    let created: String
+    let applicable_date: String
+    let min_temp: Float
+    let max_temp: Float
+    let the_temp: Float
+    let wind_speed: Float
+    let wind_direction: Float
+    let air_pressure: Float
+    let humidity: Int
+    let visibility: Float
+    let predictability: Int
+}
+
+struct Entry: Codable {
+    let days: [String: Day]
 }
 
