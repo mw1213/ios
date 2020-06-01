@@ -113,6 +113,8 @@
                     </view>
                     <connections>
                         <outlet property="air_pressure" destination="hwt-aD-r0G" id="raE-nU-oXk"/>
+                        <outlet property="button_next_outlet" destination="aHk-m6-pOw" id="PPe-aq-4FY"/>
+                        <outlet property="button_prev_outlet" destination="Rr9-gU-Qz5" id="dG7-Wh-WGH"/>
                         <outlet property="date_today" destination="FHF-Ja-kTk" id="1K6-Lj-hI1"/>
                         <outlet property="image" destination="kij-3f-TAd" id="DiB-gG-85e"/>
                         <outlet property="label_temp" destination="zGq-Cd-dZ1" id="1bG-58-GbH"/>
@@ -125,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133.59999999999999" y="118.96551724137932"/>
+            <point key="canvasLocation" x="133.59999999999999" y="118.29085457271366"/>
         </scene>
     </scenes>
 </document>
