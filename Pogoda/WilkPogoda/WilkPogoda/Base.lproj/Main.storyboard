@@ -28,15 +28,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kij-3f-TAd">
-                                        <rect key="frame" x="0.0" y="23.5" width="240" height="76"/>
+                                        <rect key="frame" x="0.0" y="23.5" width="240" height="52.5"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYV-Y1-ES8">
+                                        <rect key="frame" x="0.0" y="79" width="240" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwt-aD-r0G">
                                         <rect key="frame" x="0.0" y="102.5" width="240" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR3-0s-NhF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR3-0s-NhF" userLabel="Rainfall">
                                         <rect key="frame" x="0.0" y="126" width="240" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -60,7 +66,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGq-Cd-dZ1">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGq-Cd-dZ1" userLabel="Label tem_max">
                                         <rect key="frame" x="0.0" y="220" width="240" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -117,9 +123,10 @@
                         <outlet property="button_prev_outlet" destination="Rr9-gU-Qz5" id="dG7-Wh-WGH"/>
                         <outlet property="date_today" destination="FHF-Ja-kTk" id="1K6-Lj-hI1"/>
                         <outlet property="image" destination="kij-3f-TAd" id="DiB-gG-85e"/>
-                        <outlet property="label_temp" destination="zGq-Cd-dZ1" id="1bG-58-GbH"/>
+                        <outlet property="label_temp" destination="PYV-Y1-ES8" id="HVe-U4-fB4"/>
+                        <outlet property="label_temp_max" destination="zGq-Cd-dZ1" id="dqI-Z0-pzS"/>
                         <outlet property="label_temp_min" destination="GIo-JJ-1XJ" id="XNS-dF-7vI"/>
-                        <outlet property="rainfall" destination="hwt-aD-r0G" id="mCW-7H-fpK"/>
+                        <outlet property="rainfall" destination="GR3-0s-NhF" id="usT-y3-KAR"/>
                         <outlet property="weather_type" destination="3Zv-Ps-fMg" id="CzD-Xi-oYc"/>
                         <outlet property="wind_direction" destination="nxo-DL-Zvk" id="eur-un-O2y"/>
                         <outlet property="wind_speed" destination="7s2-GZ-Rwt" id="HSq-dO-ufl"/>

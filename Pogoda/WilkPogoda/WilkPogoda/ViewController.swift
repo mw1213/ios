@@ -61,15 +61,17 @@ class ViewController: UIViewController {
     var entry: Entry?
     var weatherCount = 0
     
+
+    @IBOutlet weak var label_temp: UILabel!
     @IBOutlet weak var label_temp_max: UILabel!
     @IBOutlet weak var label_temp_min: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var weather_type: UILabel!
     @IBOutlet weak var wind_speed: UILabel!
     @IBOutlet weak var air_pressure: UILabel!
-    @IBOutlet weak var rainfall: UILabel!
     @IBOutlet weak var wind_direction: UILabel!
     @IBOutlet weak var date_today: UILabel!
+    @IBOutlet weak var rainfall: UILabel!
     @IBAction func button_next(_ sender: Any) {
         if (self.weatherCount != 0 && self.index != self.weatherCount - 1){
             self.index += 1
@@ -104,20 +106,23 @@ class ViewController: UIViewController {
 
     func updateView(index: Int){
         if let weather = self.entry?.consolidated_weather[index] {
+            self.label_temp.text = "Temperature:" + String(weather.the_temp)
             self.date_today.text = String(weather.applicable_date)
-            self.weather_type.text = weather.weather_state_name
-            self.label_temp_min.text = String(weather.min_temp)
-            self.label_temp_max.text = String(weather.max_temp)
-            self.wind_speed.text = String(weather.wind_speed)
-            self.wind_direction.text = String(weather.wind_direction)
-            self.air_pressure.text = String(weather.air_pressure)
-            self.rainfall.text = String(weather.humidity)
+            self.weather_type.text = "Type: " +  weather.weather_state_name
+            self.label_temp_min.text = "Temp min:" + String(weather.min_temp)
+            self.label_temp_max.text = "Temp max:" + String(weather.max_temp)
+            self.wind_speed.text = "Wind speed:" + String(weather.wind_speed)
+            self.wind_direction.text = "Wind deirection:" + String(weather.wind_direction_compass)
+            self.air_pressure.text = "Air pressure: " + String(weather.air_pressure)
+            self.rainfall.text = "Humidity:" +  String(weather.humidity)
+            //self.image.image = UIImage(named: weather.weather_state_abbr)!
+            //self.image.setNeedsDisplay()
         }
     }
     
     func initView(response: Entry?){
         self.entry = response
-        if let count = self.entry?.consolidated_weather.count as? Int {
+        if let count = self.entry?.consolidated_weather.count {
             self.weatherCount = count
         } else {
             self.button_next_outlet.isEnabled = false
