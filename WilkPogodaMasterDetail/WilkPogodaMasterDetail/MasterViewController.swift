@@ -10,13 +10,79 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
+    struct Day: Codable{
+        let id: Int
+        let weather_state_name: String
+        let weather_state_abbr: String
+        let wind_direction_compass: String
+        let created: String
+        let applicable_date: String
+        let min_temp: Float
+        let max_temp: Float
+        let the_temp: Float
+        let wind_speed: Float
+        let wind_direction: Float
+        let air_pressure: Float
+        let humidity: Int
+        let visibility: Float
+        let predictability: Int
+    }
+    
+    struct Entry: Codable {
+        let consolidated_weather: [Day]
+        let time: String
+        let sun_rise: String
+        let sun_set: String
+        let timezone_name: String
+        let parent: Parent
+        let sources: [Source]
+        let title: String
+        let location_type: String
+        let woeid: Int
+        let latt_long: String
+        let timezone: String
+    }
+    
+    struct Parent: Codable {
+        let title: String
+        let location_type: String
+        let woeid: Int
+        let latt_long: String
+    }
+    
+    struct Source: Codable {
+        let title: String
+        let slug: String
+        let url: String
+        let crawl_rate: Int
+    }
+    
+    var index = 0
+    var entry: Entry?
+    var weatherCount = 0
+    
+    
+    
+    
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
+    
+    var cities = [String]()
+    var cityUrls = [String]()
+    var weatherStates = [Entry?]()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.cities.append("Warszawa")
+        self.cityUrls.append("https://www.metaweather.com/api/location/523920/")
+        self.cities.append("London")
+        self.cityUrls.append("https://www.metaweather.com/api/location/44418/")
+        self.cities.append("San Francisco")
+        self.cityUrls.append("https://www.metaweather.com/api/location/2487956/")
+        
+        
         navigationItem.leftBarButtonItem = editButtonItem
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
@@ -60,14 +126,20 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return cities.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.loadData(cityUrl: self.cityUrls[indexPath.row])
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let city = cities[indexPath.row]
+        //fatal error index out of range weatherStates still null
+        let temperature = self.weatherStates[indexPath.row]?.consolidated_weather[0].the_temp
+        let weather_icon = self.weatherStates[indexPath.row]?.consolidated_weather[0].weather_state_abbr
+        cell.textLabel!.text = city
+        cell.detailTextLabel?.text = String(temperature!)
+        cell.imageView?.image = UIImage(named: weather_icon!)
+        cell.imageView?.setNeedsDisplay()
         return cell
     }
 
@@ -85,6 +157,33 @@ class MasterViewController: UITableViewController {
         }
     }
 
+    func loadData(cityUrl: String){
+        let url = URL(string: cityUrl)!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error{
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+                return
+            }
+            guard let data = data, error == nil else{
+                return
+            }
+            
+            // decode JSON
+            let decoder = JSONDecoder()
+            do {
+                let response = try decoder.decode(Entry.self, from: data)
+                self.weatherStates.append(response)
+            } catch {
+                print(error)
+            }
+            DispatchQueue.main.async {
+            }
+        }
+        task.resume()
+
+    }
 
 }
 
