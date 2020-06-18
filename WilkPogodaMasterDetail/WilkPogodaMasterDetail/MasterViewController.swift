@@ -8,54 +8,56 @@
 
 import UIKit
 
+struct Day: Codable{
+    let id: Int
+    let weather_state_name: String
+    let weather_state_abbr: String
+    let wind_direction_compass: String
+    let created: String
+    let applicable_date: String
+    let min_temp: Float
+    let max_temp: Float
+    let the_temp: Float
+    let wind_speed: Float
+    let wind_direction: Float
+    let air_pressure: Float
+    let humidity: Int
+    let visibility: Float
+    let predictability: Int
+}
+
+struct Entry: Codable {
+    let consolidated_weather: [Day]
+    let time: String
+    let sun_rise: String
+    let sun_set: String
+    let timezone_name: String
+    let parent: Parent
+    let sources: [Source]
+    let title: String
+    let location_type: String
+    let woeid: Int
+    let latt_long: String
+    let timezone: String
+}
+
+struct Parent: Codable {
+    let title: String
+    let location_type: String
+    let woeid: Int
+    let latt_long: String
+}
+
+struct Source: Codable {
+    let title: String
+    let slug: String
+    let url: String
+    let crawl_rate: Int
+}
+
+
 class MasterViewController: UITableViewController {
 
-    struct Day: Codable{
-        let id: Int
-        let weather_state_name: String
-        let weather_state_abbr: String
-        let wind_direction_compass: String
-        let created: String
-        let applicable_date: String
-        let min_temp: Float
-        let max_temp: Float
-        let the_temp: Float
-        let wind_speed: Float
-        let wind_direction: Float
-        let air_pressure: Float
-        let humidity: Int
-        let visibility: Float
-        let predictability: Int
-    }
-    
-    struct Entry: Codable {
-        let consolidated_weather: [Day]
-        let time: String
-        let sun_rise: String
-        let sun_set: String
-        let timezone_name: String
-        let parent: Parent
-        let sources: [Source]
-        let title: String
-        let location_type: String
-        let woeid: Int
-        let latt_long: String
-        let timezone: String
-    }
-    
-    struct Parent: Codable {
-        let title: String
-        let location_type: String
-        let woeid: Int
-        let latt_long: String
-    }
-    
-    struct Source: Codable {
-        let title: String
-        let slug: String
-        let url: String
-        let crawl_rate: Int
-    }
     
     var index = 0
     var entry: Entry?
@@ -81,7 +83,9 @@ class MasterViewController: UITableViewController {
         self.cityUrls.append("https://www.metaweather.com/api/location/44418/")
         self.cities.append("San Francisco")
         self.cityUrls.append("https://www.metaweather.com/api/location/2487956/")
-        
+        for i in 0...(self.cityUrls.count-1){
+            self.loadData(cityUrl: self.cityUrls[i])
+        }
         
         navigationItem.leftBarButtonItem = editButtonItem
 
@@ -110,11 +114,13 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                if (indexPath.row < self.weatherStates.count){
+                    let object = self.weatherStates[indexPath.row]
+                    let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                    controller.entry = object
+                    controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+                    controller.navigationItem.leftItemsSupplementBackButton = true
+                }
             }
         }
     }
@@ -130,16 +136,17 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.loadData(cityUrl: self.cityUrls[indexPath.row])
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let city = cities[indexPath.row]
-        //fatal error index out of range weatherStates still null
-        let temperature = self.weatherStates[indexPath.row]?.consolidated_weather[0].the_temp
-        let weather_icon = self.weatherStates[indexPath.row]?.consolidated_weather[0].weather_state_abbr
+//still null
+        if (indexPath.row < self.weatherStates.count){
+            let temperature = self.weatherStates[indexPath.row]?.consolidated_weather[0].the_temp
+            let weather_icon = self.weatherStates[indexPath.row]?.consolidated_weather[0].weather_state_abbr
+            cell.detailTextLabel?.text = String(temperature!)
+            cell.imageView?.image = UIImage(named: weather_icon!)
+            cell.imageView?.setNeedsDisplay()
+            }
         cell.textLabel!.text = city
-        cell.detailTextLabel?.text = String(temperature!)
-        cell.imageView?.image = UIImage(named: weather_icon!)
-        cell.imageView?.setNeedsDisplay()
         return cell
     }
 
@@ -179,6 +186,7 @@ class MasterViewController: UITableViewController {
                 print(error)
             }
             DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
         task.resume()
