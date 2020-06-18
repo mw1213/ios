@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0324AB249BBE3700CEF22B /* AddNewCityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0324AA249BBE3700CEF22B /* AddNewCityController.swift */; };
 		3FCFC160248F994500752959 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCFC15F248F994500752959 /* AppDelegate.swift */; };
 		3FCFC162248F994500752959 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCFC161248F994500752959 /* MasterViewController.swift */; };
 		3FCFC164248F994500752959 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCFC163248F994500752959 /* DetailViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F0324AA249BBE3700CEF22B /* AddNewCityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCityController.swift; sourceTree = "<group>"; };
 		3FCFC15C248F994500752959 /* WilkPogodaMasterDetail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WilkPogodaMasterDetail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCFC15F248F994500752959 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCFC161248F994500752959 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				3FCFC168248F994700752959 /* Assets.xcassets */,
 				3FCFC16A248F994700752959 /* LaunchScreen.storyboard */,
 				3FCFC16D248F994700752959 /* Info.plist */,
+				3F0324AA249BBE3700CEF22B /* AddNewCityController.swift */,
 			);
 			path = WilkPogodaMasterDetail;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FCFC164248F994500752959 /* DetailViewController.swift in Sources */,
+				3F0324AB249BBE3700CEF22B /* AddNewCityController.swift in Sources */,
 				3FCFC162248F994500752959 /* MasterViewController.swift in Sources */,
 				3FCFC160248F994500752959 /* AppDelegate.swift in Sources */,
 			);

@@ -56,7 +56,12 @@ struct Source: Codable {
 }
 
 
-class MasterViewController: UITableViewController {
+protocol AddNewCity: AnyObject
+{
+    func addCity(name: String, url: String)
+}
+
+class MasterViewController: UITableViewController, AddNewCity {
 
     
     var index = 0
@@ -68,10 +73,13 @@ class MasterViewController: UITableViewController {
     
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
+
+    var addViewController: AddNewCityController? = nil
     
     var cities = [String]()
     var cityUrls = [String]()
     var weatherStates = [Entry?]()
+
 
 
     override func viewDidLoad() {
@@ -88,9 +96,9 @@ class MasterViewController: UITableViewController {
         }
         
         navigationItem.leftBarButtonItem = editButtonItem
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
+        
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+//        navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -102,10 +110,18 @@ class MasterViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
 
+    
+    func addCity(name: String, url: String){
+        self.cities.append(name)
+        self.cityUrls.append(url)
+        self.loadData(cityUrl: url)
+        
+    }
+    
     @objc
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
+        cities.append("Moscow");
+        let indexPath = IndexPath(row: cities.count-1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
 
@@ -122,6 +138,10 @@ class MasterViewController: UITableViewController {
                     controller.navigationItem.leftItemsSupplementBackButton = true
                 }
             }
+        }
+        if segue.identifier == "showAdd"{
+            let vc = segue.destination as! AddNewCityController
+            vc.delegateAction = self
         }
     }
 
@@ -157,7 +177,11 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
+            self.cities.remove(at: indexPath.row)
+            if(self.cityUrls.count>indexPath.row){
+                self.cityUrls.remove(at: indexPath.row)
+                self.weatherStates.remove(at: indexPath.row)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

@@ -215,11 +215,79 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Maciej Wilk Master" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Maciej Wilk Master" id="Zdf-7t-Un8">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="3Ro-zC-LB2">
+                            <connections>
+                                <segue destination="1SL-Oo-xni" kind="showDetail" identifier="showAdd" id="peX-h7-Pjv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
+        </scene>
+        <!--AddNewCityController-->
+        <scene sceneID="m6N-VE-cdR">
+            <objects>
+                <viewController title="AddNewCityController" id="1SL-Oo-xni" customClass="AddNewCityController" customModule="WilkPogodaMasterDetail" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ccP-8Y-F1q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wq3-Ed-B84">
+                                <rect key="frame" x="147" y="300" width="81.5" height="131"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwL-IX-rql">
+                                        <rect key="frame" x="0.0" y="0.0" width="81.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bfx-8N-457" userLabel="LatitudeTF">
+                                        <rect key="frame" x="0.0" y="20.5" width="81.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Longitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9j5-He-z5Y">
+                                        <rect key="frame" x="0.0" y="50.5" width="81.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xd2-gC-q4r" userLabel="LongitudeTF">
+                                        <rect key="frame" x="0.0" y="71" width="81.5" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXj-tG-1PM" userLabel="Add">
+                                        <rect key="frame" x="0.0" y="101" width="81.5" height="30"/>
+                                        <state key="normal" title="Add"/>
+                                        <connections>
+                                            <action selector="add:" destination="1SL-Oo-xni" eventType="touchUpInside" id="d9y-qc-jjw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Wq3-Ed-B84" firstAttribute="centerY" secondItem="IcA-kd-5iE" secondAttribute="centerY" id="R4g-7E-yUE"/>
+                            <constraint firstItem="Wq3-Ed-B84" firstAttribute="centerX" secondItem="IcA-kd-5iE" secondAttribute="centerX" id="eeM-Qp-iJy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IcA-kd-5iE"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6yv-Hs-0Xw"/>
+                    <connections>
+                        <outlet property="latitude" destination="bfx-8N-457" id="CoC-Ie-DBK"/>
+                        <outlet property="longitude" destination="Xd2-gC-q4r" id="TFD-zX-1Bc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHf-Jx-7M6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="-630"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
