@@ -47,7 +47,10 @@ class AddNewCityController: UIViewController, UITableViewDelegate, UITableViewDa
         self.loadData()
     }
 
-
+    @IBAction func cancel(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func addAsCityName(_ sender: Any) {
         self.loadDataForCity()
     }
@@ -55,6 +58,7 @@ class AddNewCityController: UIViewController, UITableViewDelegate, UITableViewDa
         let singleCity = cities[0]
         let url = "https://www.metaweather.com/api/location/" + String(singleCity!.woeid)
         delegateAction?.addCity(name: singleCity!.title, url: url)
+                _ = navigationController?.popViewController(animated: true)
     }
     
 
@@ -78,6 +82,7 @@ class AddNewCityController: UIViewController, UITableViewDelegate, UITableViewDa
         let woeid = self.cities2[indexPath.row]!.woeid
         let url = "https://www.metaweather.com/api/location/" + String(woeid)
         delegateAction?.addCity(name: name, url: url)
+                _ = navigationController?.popViewController(animated: true)
     }
     
     func loadData(){

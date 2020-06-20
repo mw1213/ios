@@ -236,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="22H-QT-lS7">
-                                <rect key="frame" x="0.0" y="333" width="375" height="334"/>
+                                <rect key="frame" x="0.0" y="363" width="375" height="304"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCell" textLabel="3qL-2q-MeA" style="IBUITableViewCellStyleDefault" id="nJ6-I1-xph">
@@ -259,7 +259,7 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Wq3-Ed-B84">
-                                <rect key="frame" x="67.5" y="75" width="229.5" height="232"/>
+                                <rect key="frame" x="67.5" y="75" width="229.5" height="262"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitude:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwL-IX-rql">
                                         <rect key="frame" x="0.0" y="0.0" width="229.5" height="20.5"/>
@@ -315,6 +315,13 @@
                                         <state key="normal" title="Search"/>
                                         <connections>
                                             <action selector="addAsCityName:" destination="1SL-Oo-xni" eventType="touchUpInside" id="aIH-X5-P5x"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKp-Xz-TwE">
+                                        <rect key="frame" x="0.0" y="232" width="229.5" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancel:" destination="1SL-Oo-xni" eventType="touchUpInside" id="ELj-PM-EsY"/>
                                         </connections>
                                     </button>
                                 </subviews>

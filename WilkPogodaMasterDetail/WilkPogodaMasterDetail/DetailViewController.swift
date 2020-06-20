@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     var index = 0
     var entry: Entry?
     var weatherCount = 0
-    
+    var city: String?
     
     @IBOutlet weak var label_temp: UILabel!
     @IBOutlet weak var label_temp_max: UILabel!
@@ -63,6 +63,9 @@ class DetailViewController: UIViewController {
                 self.button_next_outlet.isEnabled = false
             }
             self.updateView(index: 0)
+        }
+        if let cityName = self.city{
+            navigationItem.title = cityName
         }
     }
     

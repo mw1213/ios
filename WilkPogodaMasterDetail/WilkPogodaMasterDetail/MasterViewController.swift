@@ -131,9 +131,11 @@ class MasterViewController: UITableViewController, AddNewCity {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 if (indexPath.row < self.weatherStates.count){
+                    let cityName = self.cities[indexPath.row]
                     let object = self.weatherStates[indexPath.row]
                     let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                     controller.entry = object
+                    controller.city = cityName
                     controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                     controller.navigationItem.leftItemsSupplementBackButton = true
                 }
